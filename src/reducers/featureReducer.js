@@ -19,11 +19,11 @@ export const initialState = {
 export const featureReducer = (state=initialState, action) => {
   switch (action.type) {
     case 'ADD_FEATURE': 
-      return {
+      return !state.car.features.includes(action.payload) ? {
         ...state, 
         additionalPrice: state.additionalPrice + action.payload.price,
         car: {...state.car, features: [...state.car.features, action.payload]}
-        }
+        } : state;
     case 'REMOVE_FEATURE':
       return {
         ...state,
